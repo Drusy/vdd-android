@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import fr.volantdesdomes.app.R
 import fr.volantdesdomes.app.viewmodel.PagesViewModel
 
-class PagesFragment : Fragment() {
+class PagesFragment : AbstractFragment() {
 
     companion object {
         fun newInstance() = PagesFragment()

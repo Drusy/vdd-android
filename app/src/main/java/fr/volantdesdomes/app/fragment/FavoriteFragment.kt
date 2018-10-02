@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import fr.volantdesdomes.app.R
 import fr.volantdesdomes.app.viewmodel.FavoriteViewModel
 
-class FavoriteFragment : Fragment() {
+class FavoriteFragment : AbstractFragment() {
 
     companion object {
         fun newInstance() = FavoriteFragment()
