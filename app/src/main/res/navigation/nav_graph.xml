@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_articles">
+
+    <fragment
+        android:id="@+id/navigation_articles"
+        android:name="fr.volantdesdomes.app.fragment.ArticlesFragment"
+        android:label="fragment_articles"
+        tools:layout="@layout/fragment_articles" />
+    <fragment
+        android:id="@+id/navigation_category"
+        android:name="fr.volantdesdomes.app.fragment.CategoriesFragment"
+        android:label="fragment_categories"
+        tools:layout="@layout/fragment_categories" />
+    <fragment
+        android:id="@+id/navigation_favorites"
+        android:name="fr.volantdesdomes.app.fragment.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="fr.volantdesdomes.app.fragment.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/navigation_pages"
+        android:name="fr.volantdesdomes.app.fragment.PagesFragment"
+        android:label="fragment_pages"
+        tools:layout="@layout/fragment_pages" />
+</navigation>
