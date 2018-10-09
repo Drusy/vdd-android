@@ -9,16 +9,16 @@ import fr.volantdesdomes.app.ext.stripHtml
 import fr.volantdesdomes.app.model.WPPost
 import kotlinx.android.synthetic.main.post_item.view.*
 
-class ListItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+class PostItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
     var note: WPPost? = null
         set(value) {
             field = value
-            view.title.text = value?.title?.rendered?.stripHtml()
-            view.excerpt.text = value?.excerpt?.rendered?.stripHtml()
+            view.title.text = value?.strippedTitle
+            view.content.text = value?.strippedExcerp
         }
 }
 
-class PostItemAdapter(val onClick: (WPPost) -> Unit) : RecyclerView.Adapter<ListItemViewHolder>() {
+class PostItemAdapter(val onClick: (WPPost) -> Unit) : RecyclerView.Adapter<PostItemViewHolder>() {
     var items: List<WPPost> = emptyList()
 
     fun loadItems(newItems: List<WPPost>) {
@@ -27,10 +27,13 @@ class PostItemAdapter(val onClick: (WPPost) -> Unit) : RecyclerView.Adapter<List
 
     override fun getItemCount(): Int = items.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemViewHolder = ListItemViewHolder(LayoutInflater.from(parent.context)
-            .inflate(R.layout.post_item, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostItemViewHolder =
+        PostItemViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.post_item, parent, false)
+        )
 
-    override fun onBindViewHolder(holder: ListItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PostItemViewHolder, position: Int) {
         holder.note = items[position]
         holder.view.setOnClickListener { onClick(items[position]) }
     }

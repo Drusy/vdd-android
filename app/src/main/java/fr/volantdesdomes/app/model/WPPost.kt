@@ -1,8 +1,11 @@
 package fr.volantdesdomes.app.model
 
+import android.text.Spanned
 import com.squareup.moshi.JsonClass
+import fr.volantdesdomes.app.ext.stripHtml
 import io.realm.RealmList
 import io.realm.RealmModel
+import io.realm.annotations.Ignore
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.RealmClass
 import java.util.*
@@ -30,4 +33,17 @@ open class WPPost(
         var template: String? = null,
         var format: String? = null,
         var categories: RealmList<Int>? = null
-) : RealmModel
+) : RealmModel {
+    @delegate:Ignore
+    val strippedTitle: Spanned? by lazy {
+        title?.rendered?.stripHtml()
+    }
+    @delegate:Ignore
+    val strippedExcerp: Spanned? by lazy {
+        excerpt?.rendered?.stripHtml()
+    }
+    @delegate:Ignore
+    val strippedContent: Spanned? by lazy {
+        content?.rendered?.stripHtml()
+    }
+}

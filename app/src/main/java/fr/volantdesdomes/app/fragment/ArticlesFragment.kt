@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import fr.volantdesdomes.app.R
 import fr.volantdesdomes.app.adapter.PostItemAdapter
+import fr.volantdesdomes.app.rest.APIHelper
 import fr.volantdesdomes.app.viewmodel.ArticlesViewModel
 import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.fragment_articles.*
@@ -21,8 +22,7 @@ class ArticlesFragment : AbstractFragment() {
 
     private lateinit var viewModel: ArticlesViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_articles, container, false)
     }
 
@@ -32,7 +32,7 @@ class ArticlesFragment : AbstractFragment() {
         viewModel = ViewModelProviders.of(this).get(ArticlesViewModel::class.java)
 
         val adapter = PostItemAdapter {
-//            Timber.d(it.title?.rendered)
+            Timber.d(it.title?.rendered)
         }
 
         recycler_articles.adapter = adapter
@@ -47,12 +47,22 @@ class ArticlesFragment : AbstractFragment() {
             adapter.loadItems(it ?: emptyList())
             adapter.notifyDataSetChanged()
 
+            recycler_articles.visibility = View.GONE
+            empty_view.visibility = View.GONE
+            loader.visibility = View.GONE
+
             if (it.isEmpty()) {
-                viewModel.refreshPosts()
+                empty_view.visibility = View.VISIBLE
+
             } else {
-                loader.visibility = View.GONE
                 recycler_articles.visibility = View.VISIBLE
             }
         }.addTo(disposables)
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        viewModel.refresh()
     }
 }

@@ -5,6 +5,7 @@ import android.text.Spanned
 import io.reactivex.Single
 import io.realm.Realm
 import io.realm.RealmModel
+import timber.log.Timber
 
 fun <T : List<RealmModel>> Single<T>.insertToRealm(beforeInsert: ((Realm, T) -> Unit)? = null): Single<T> {
     return doOnSuccess { value ->

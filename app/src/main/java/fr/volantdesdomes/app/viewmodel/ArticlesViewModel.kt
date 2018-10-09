@@ -11,20 +11,19 @@ import io.realm.Sort
 
 class ArticlesViewModel(application: Application) : AbstractViewModel(application) {
     val flowable: Flowable<RealmResults<WPPost>> = realm.where(WPPost::class.java)
-//            .sort(WPPost::date.name, Sort.DESCENDING)
-            .findAllAsync()
-            .asFlowable()
-            .filter {
-                it.isLoaded && it.isValid
-            }
+        .sort(WPPost::date.name, Sort.DESCENDING)
+        .findAllAsync()
+        .asFlowable()
+        .filter {
+            it.isLoaded && it.isValid
+        }
 
-    fun refreshPosts() {
-
-        APIHelper.instance.getPosts()
-                .observeOn(AndroidSchedulers.mainThread())
-                .ignoreElement()
-                .onErrorComplete()
-                .subscribe()
-                .addTo(disposables)
+    fun refresh() {
+        APIHelper.getAllPosts()
+            .observeOn(AndroidSchedulers.mainThread())
+            .ignoreElement()
+            .onErrorComplete()
+            .subscribe()
+            .addTo(disposables)
     }
 }

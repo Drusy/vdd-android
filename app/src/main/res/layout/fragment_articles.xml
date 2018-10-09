@@ -12,7 +12,52 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:clipToPadding="false"
+        android:padding="8dp"/>
+
+    <LinearLayout
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:textAlignment="center">
+
+
+        <ImageView
+            android:id="@+id/empty_image"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:paddingBottom="20dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_badminton_error"
+            android:fitsSystemWindows="true" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            android:textAlignment="center"
+            tools:text="Aucune donnée" />
+
+        <TextView
+            android:id="@+id/excerpt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textSize="16sp"
+            android:visibility="visible"
+            tools:text="Revenez plus tard" />
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/loader"
