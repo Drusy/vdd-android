@@ -1,8 +1,8 @@
 package fr.volantdesdomes.app.viewmodel
 
 import android.app.Application
-import android.arch.lifecycle.AndroidViewModel
 import android.content.Context
+import androidx.lifecycle.AndroidViewModel
 import fr.volantdesdomes.app.VDDApplication
 import io.reactivex.disposables.CompositeDisposable
 import io.realm.Realm

@@ -9,12 +9,20 @@
         android:id="@+id/navigation_articles"
         android:name="fr.volantdesdomes.app.fragment.ArticlesFragment"
         android:label="fragment_articles"
-        tools:layout="@layout/fragment_articles" />
+        tools:layout="@layout/fragment_articles" >
+        <argument
+            android:name="category"
+            app:argType="reference" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_category"
         android:name="fr.volantdesdomes.app.fragment.CategoriesFragment"
         android:label="fragment_categories"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/action_navigation_category_to_navigation_articles"
+            app:destination="@id/navigation_articles" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_favorites"
         android:name="fr.volantdesdomes.app.fragment.FavoriteFragment"

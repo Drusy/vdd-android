@@ -1,9 +1,9 @@
 package fr.volantdesdomes.app.adapter
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import fr.volantdesdomes.app.R
 import fr.volantdesdomes.app.model.WPCategory
 import kotlinx.android.synthetic.main.category_item.view.*

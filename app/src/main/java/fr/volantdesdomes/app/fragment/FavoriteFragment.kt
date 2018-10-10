@@ -1,10 +1,10 @@
 package fr.volantdesdomes.app.fragment
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import fr.volantdesdomes.app.R
 import fr.volantdesdomes.app.viewmodel.FavoriteViewModel
 

@@ -1,14 +1,16 @@
 package fr.volantdesdomes.app.fragment
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import fr.volantdesdomes.app.R
 import fr.volantdesdomes.app.adapter.CategoryItemAdapter
-import fr.volantdesdomes.app.rest.APIHelper
 import fr.volantdesdomes.app.viewmodel.CategoriesViewModel
 import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.fragment_categories.*
@@ -37,12 +39,16 @@ class CategoriesFragment : AbstractFragment() {
 
 
         val adapter = CategoryItemAdapter {
-            Timber.d(it.name)
+            Timber.d("Category ${it.name} selected")
+            val bundle = bundleOf(
+                "category" to it
+            )
+            NavHostFragment.findNavController(this).navigate(R.id.action_navigation_category_to_navigation_articles, bundle)
         }
 
         recycler_articles.adapter = adapter
         recycler_articles.layoutManager = LinearLayoutManager(this.context).apply {
-            orientation = LinearLayoutManager.VERTICAL
+            orientation = RecyclerView.VERTICAL
         }
 
         loader.visibility = View.VISIBLE

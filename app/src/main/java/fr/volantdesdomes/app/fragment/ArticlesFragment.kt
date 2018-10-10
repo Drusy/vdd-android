@@ -1,14 +1,15 @@
 package fr.volantdesdomes.app.fragment
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import fr.volantdesdomes.app.R
 import fr.volantdesdomes.app.adapter.PostItemAdapter
-import fr.volantdesdomes.app.rest.APIHelper
+import fr.volantdesdomes.app.model.WPCategory
 import fr.volantdesdomes.app.viewmodel.ArticlesViewModel
 import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.fragment_articles.*
@@ -21,6 +22,7 @@ class ArticlesFragment : AbstractFragment() {
     }
 
     private lateinit var viewModel: ArticlesViewModel
+    private var category: WPCategory? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_articles, container, false)
@@ -30,6 +32,7 @@ class ArticlesFragment : AbstractFragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewModel = ViewModelProviders.of(this).get(ArticlesViewModel::class.java)
+        category = arguments?.get("category") as WPCategory
 
         val adapter = PostItemAdapter {
             Timber.d(it.title?.rendered)
@@ -37,7 +40,7 @@ class ArticlesFragment : AbstractFragment() {
 
         recycler_articles.adapter = adapter
         recycler_articles.layoutManager = LinearLayoutManager(this.context).apply {
-            orientation = LinearLayoutManager.VERTICAL
+            orientation = RecyclerView.VERTICAL
         }
 
         loader.visibility = View.VISIBLE
@@ -58,6 +61,12 @@ class ArticlesFragment : AbstractFragment() {
                 recycler_articles.visibility = View.VISIBLE
             }
         }.addTo(disposables)
+
+        if (category != null) {
+            Timber.d("Category ${category?.name} articles")
+        } else {
+            Timber.d("All articles")
+        }
     }
 
     override fun onStart() {

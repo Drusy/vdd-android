@@ -1,11 +1,12 @@
 package fr.volantdesdomes.app.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import fr.volantdesdomes.app.R
+import fr.volantdesdomes.app.R.id.*
 import fr.volantdesdomes.app.rest.APIHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
